@@ -12,5 +12,5 @@ su logic -c "bash ./startWM.sh"
 
 cp /home/logic/.Xauthority /root/
 
-#start logic
-./Logic/Logic
+# start Logic
+./Logic/Logic-2.4.4-master.AppImage --no-sandbox --no-xshm

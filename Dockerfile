@@ -21,7 +21,7 @@ RUN apt-get install -y --no-install-recommends \
 RUN apt-get install -y libgnutls28 libpixman-1-0 libtasn1-3-bin libglu1-mesa libxcursor1 libxtst6 xauth x11-utils libxinerama1 x11-xkb-utils
 
 # logic dependencies
-RUN apt-get -y install libglib2.0-0 pciutils unzip
+RUN apt-get -y install libglib2.0-0 pciutils libnss3 libgtk-3-0 libasound2 libgbm1 libfuse2
 
 WORKDIR /packages
 
@@ -29,10 +29,9 @@ COPY packages/tigervncserver_1.5.90-3ubuntu1_amd64.deb ./
 RUN dpkg -i tigervncserver_1.5.90-3ubuntu1_amd64.deb
 
 # install logic
-COPY packages/Logic+1.2.5+(64-bit).zip ./
-RUN unzip "Logic+1.2.5+(64-bit).zip" && \
-	mkdir /home/logic && \
-	cp -R "Logic 1.2.5 (64-bit)" /home/logic/Logic
+RUN mkdir /home/logic && mkdir /home/logic/Logic
+COPY packages/Logic-2.4.4-master.AppImage /home/logic/Logic
+RUN chmod +x /home/logic/Logic/Logic-2.4.4-master.AppImage
 
 WORKDIR /home/logic
 
